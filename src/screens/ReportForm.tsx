@@ -23,26 +23,13 @@ export default function ReportForm() {
   const [animauxPrecisions, setAnimauxPrecisions] = useState('');
   const [activites, setActivites] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
-  const [userSignalementsCount, setUserSignalementsCount] = useState<number | null>(null);
+  // const [userSignalementsCount, setUserSignalementsCount] = useState<number | null>(null);
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (auth.currentUser) {
       setUserDisplayName(auth.currentUser.displayName || auth.currentUser.email || 'Utilisateur');
-      const fetchCount = async () => {
-        try {
-          const db = getFirestore(app);
-          const q = collection(db, 'signalements');
-          const snapshot = await getDocs(q);
-          const userId = auth.currentUser?.uid;
-          const count = snapshot.docs.filter(doc => doc.data().user === userId).length;
-          setUserSignalementsCount(count);
-        } catch {
-          setUserSignalementsCount(null);
-        }
-      };
-      fetchCount();
     }
   }, []);
 
@@ -106,9 +93,7 @@ export default function ReportForm() {
       <HeaderNature />
       <View style={styles.userInfo}>
         <Text style={styles.userInfoText}>Connecté en tant que : {userDisplayName}</Text>
-        {userSignalementsCount !== null && (
-          <Text style={styles.userInfoText}>Nombre de signalements : {userSignalementsCount}</Text>
-        )}
+
       </View>
       <Text style={styles.label}>Titre du signalement *</Text>
       <TextInput
@@ -176,6 +161,9 @@ export default function ReportForm() {
         />
       )}
       <Text style={styles.label}>Description de l'observation *</Text>
+      <Text style={styles.descriptionHint}>
+        Merci de décrire précisément l’endroit où vous vous trouvez (repères, accès, environnement) pour aider les autres utilisateurs à localiser le site.
+      </Text>
       <TextInput
         style={styles.input}
         placeholder="Couleur, odeur, aspect, mousse, mortalité de poissons..."
@@ -218,6 +206,13 @@ export default function ReportForm() {
 }
 
 const styles = StyleSheet.create({
+  descriptionHint: {
+    fontSize: 13,
+    color: '#1976d2',
+    marginBottom: 8,
+    marginTop: -8,
+    fontStyle: 'italic',
+  },
   container: {
     flex: 1,
     padding: 16,

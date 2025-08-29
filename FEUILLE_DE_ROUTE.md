@@ -16,7 +16,8 @@
 	- [x] Ajouter un accès rapide à l’accueil ou à la liste depuis tous les écrans
 	- [x] Tester l’ergonomie sur plusieurs tailles d’écran et corriger les débordements
 
-## 3. Fonctionnalités
+- [ ] Afficher une carte de France avec des points rouges aux coordonnées GPS pour un aperçu rapide sur l’écran d’accueil
+- [ ] Afficher le nombre de signalements de l’utilisateur dans la fiche de détail d’un signalement (gage de confiance)
 - [ ] Afficher les détails d’un signalement (clic sur un item de la liste)
 - [ ] Ajouter la recherche et les filtres dans la liste des signalements (par date, lieu, type, etc.)
 - [ ] (Optionnel) Ajouter l’upload de photo (avec gestion des droits et stockage Firebase)
@@ -31,6 +32,9 @@
 - [ ] Publier sur Google Play / App Store (création comptes développeur, screenshots, description, politique de confidentialité)
 
 ## 6. Documentation & Suivi
+
+## 7. Vérification finale
+- [ ] Vérifier la confidentialité des données utilisateurs et des signalements avant déploiement
 - [ ] Rédiger une documentation utilisateur (FAQ, guide rapide)
 - [ ] Documenter le code et la configuration (README, commentaires, scripts de déploiement)
 - [ ] Mettre en place un suivi des bugs et évolutions (Trello, GitHub Issues, etc.)
